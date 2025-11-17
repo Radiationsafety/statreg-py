@@ -383,7 +383,7 @@ def null_space(A, eps=1e-13):
     _, s, vh = sc.linalg.svd(A)
     s = np.append(s, np.zeros(vh.shape[0] - s.shape[0]))
     null_mask = s <= eps
-    return sc.transpose(sc.compress(null_mask, vh, axis=0))
+    return np.transpose(np.compress(null_mask, vh, axis=0))  # sc -> np for new version of scipy
 
 
 def intersect_linear_spaces(A, B):
